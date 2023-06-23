@@ -1,0 +1,23 @@
+FE
+
+simple web page served by nginx, GETs last dates for Loki and Pan from BE. 
+
+On load, get data. update state. 
+
+Element shows last date for Loki
+Form POSTs current time to DB and reloads. 
+Element shows last date for Pan
+Form POSTs current time to DB and reloads. 
+
+
+BE
+
+Simple express setup that takes in GET from FE, gets data from redis database, formats, and hands it back to FE. 
+No. Can do in FE. No need to make a whole extra BE for this. 
+
+
+Data
+
+{LokiSlugBear: date and time}
+{Pan: date and time}
+
