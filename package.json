@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/tonydiethelm/catsighting#readme",
   "dependencies": {
+    "@tonydiethelm/holler": "^1.0.7",
     "express": "^4.18.2",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "vite": "^4.3.9"
   }
 }
