@@ -14,6 +14,7 @@ BE
 
 Simple express setup that takes in GET from FE, gets data from redis database, formats, and hands it back to FE. 
 No. Can do in FE. No need to make a whole extra BE for this. 
+Yes. Keep functionality modular. Easier to TS. Let's do Yes. 
 
 
 Data
