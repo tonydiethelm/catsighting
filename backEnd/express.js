@@ -36,10 +36,25 @@ app.use(express.json());	//automagically read JSON.
 
 
 //Hello world to start. Comment out later. 
-app.get("/", (_req, res) => {
-  res.json({ message: "Hello, world!" });
-});
 
+app.get("/",
+	(request, response) => {response.send("Hello, world!")}
+);
+
+
+app.get("/",
+	holler,
+	fakeDate,
+	holler,
+	(request, response) => {response.status(200).send(response.fakeDate)}
+);
+
+app.post("/",
+        holler,
+        fakeDateWrite,
+        holler,
+        (request, response) => {response.status(200).send("Written to DB")}
+);
 
 
 
