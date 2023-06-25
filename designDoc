@@ -9,6 +9,29 @@ Form POSTs current time to DB and reloads.
 Element shows last date for Pan
 Form POSTs current time to DB and reloads. 
 
+Basic setup
+Centered
+Picture of LokiSlugBear
+last date seen: blah
+Form with button
+
+picute of Pan
+last date seen: blah
+Form with Button
+
+
+So, we're going to make a cat element to show the pic, the last date seen, the form with button.
+Pull from an array of cat names. 
+Picture will be based on the cat name. 
+
+Need to set up state after the array, pull data from DB to fill up state, will create elements from changed state. NO, that will pull data from cat that doesn't need it. Also, forms will reload page, pulling all data again, even if it doesn't need it. Don't do that. 
+
+So use buttons. 
+set up state.
+Create elements from array of cat names. 
+each element will pull from DB
+each element will update state on successful write to DB, which will update THAT element, and not reload the page and cause unneeded DB pulls and element refreshes. 
+
 
 BE
 
