@@ -12,17 +12,19 @@ DB is redis on home network. "services" box.
 Done:
 set up all the boilerplate, imports, listen, port, etc. 
 handle basic 404 error. 
+write fake date and fake date write modules. 
+Write simple GET and POST routes that respond with fake times and respond to fake times, so I can write the FE while I figure out the DB calls. 
 
 
 In progress:
-Write simple GET and POST routes that respond with fake times and respond to fake times, so I can write the FE while I figure out the DB calls. 
+
 
 To Do:
 connect to redis DB
 figure out redis commands to get the data I want.
 Read up on setting which DB to read from in Redis, and naming them.
 set up error handling. 
-
+write modules/middleware for writing and reading from DB. 
 
 
 */
@@ -30,8 +32,8 @@ set up error handling.
 //set up everything
 import express from 'express';
 import holler from '@tonydiethelm/holler';	//console logging during testing.
-import fakeDate from './fakeDate.js';
-import fakeDateWrite from './fakeDateWrite.js';
+import {fakeDate} from './fakeDate.mjs';
+import {fakeDateWrite} from './fakeDateWrite.mjs';
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -39,17 +41,17 @@ app.use(express.json());	//automagically read JSON.
 
 
 //Hello world to start. Comment out later. 
-
+/*
 app.get("/",
 	(request, response) => {response.send("Hello, world!")}
 );
-
+*/
 
 app.get("/",
 	holler,
 	fakeDate,
 	holler,
-	(request, response) => {response.status(200).send(response.fakeDate)}
+	(request, response) => {response.status(200).send(response.locals)}
 );
 
 app.post("/",
