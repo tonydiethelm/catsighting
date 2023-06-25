@@ -30,6 +30,9 @@ set up error handling.
 //set up everything
 import express from 'express';
 import holler from '@tonydiethelm/holler';	//console logging during testing.
+import fakeDate from './fakeDate.js';
+import fakeDateWrite from './fakeDateWrite.js';
+
 const port = process.env.PORT || 3000;
 const app = express();
 app.use(express.json());	//automagically read JSON.
@@ -50,10 +53,10 @@ app.get("/",
 );
 
 app.post("/",
-        holler,
-        fakeDateWrite,
-        holler,
-        (request, response) => {response.status(200).send("Written to DB")}
+  holler,
+  fakeDateWrite,
+  holler,
+  (request, response) => {response.status(200).send("Written to DB")}
 );
 
 
@@ -61,11 +64,8 @@ app.post("/",
 
 //handle wrong URIs
 app.use('*', 
-  (request, response) => {
-    response.status(404).json('Sorry, we don\'t have that here.')
+  (request, response) => {response.status(404).json('Sorry, we don\'t have that here.')
 });
 
 //listen on port. 
-app.listen(port, () => {
-  console.log("Server listening on port", port);
-});
+app.listen(port, () => {console.log("Server listening on port", port);});
