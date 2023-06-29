@@ -1,0 +1,6 @@
+/* This is just so I can see my divs properly in the beginning */
+div {
+  border-style: dotted;
+  border-width: 2px;
+  border-color: red
+}

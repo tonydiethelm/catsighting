@@ -25,7 +25,7 @@ No State: page loads, loads JS, pulls data from DB through BE, creates an elemen
 
 rerender and pull: page loads, loads JS, creates an element for each cat, passing in name as prop. On render, pulls date from DB. Button is button, POSTS and rerenders. Good? No state, straightforward. doesn't pull data it doesn't need. Bad? Have to pass cat name to BE, more complex BE to get just one cat's data. 
 
-Big State: page loads, loads JS, pulls data from DB throgh BE, creates state. Creates an element for each cat in state, passing name and date in as props. Button is button, posts to upload DB and changes state upon receipt of acknowledgement from BE. State change updates the element. Good? honestly, fairly straightforward. Doesn't pull data it doesn't need. Bad? Have to pass props down once. 
+Big State: page loads, loads JS, pulls data from DB throgh BE, creates state. (Important order, don't create empty state, then populate, making it render empty, then rerender full). Creates an element for each cat in state, passing name and date in as props. Button is button, posts to upload DB and changes state upon receipt of acknowledgement from BE. State change updates the element. Good? honestly, fairly straightforward. Doesn't pull data it doesn't need. Bad? Have to pass props down once. 
 
 Small State: page loads, loads JS, Creates an element for each cat in array, passing in cat name. Each element pulls from DB for Date. Button is button, posts to upload DB and changes state upon receipt of acknowledgement from BE. State change updates the element. Good? honestly, fairly straightforward. Doesn't pull data it doesn't need. Bad? have to pass props once. Multiple states? Have to pass cat name to BE so it can pull proper data. Makes BE more complex. 
 
@@ -43,4 +43,6 @@ Data
 
 {LokiSlugBear: date and time}
 {Pan: date and time}
+
+Will be given by BE as array of objects. [{LokiSlugBear: date and time}, {Pan: date and time}]
 
