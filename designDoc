@@ -1,20 +1,16 @@
 FE
 
-simple web page served by nginx, GETs last dates for Loki and Pan from BE. 
-
-On load, get data. update state. 
-
-Element shows last date for Loki
-Form POSTs current time to DB and reloads. 
-Element shows last date for Pan
-Form POSTs current time to DB and reloads. 
+Simple web page served by nginx, GETs last dates for Loki and Pan from BE. 
 
 Basic setup
-Centered
+DIV for horizontal centering all cat elements 
+
+DIV for specific element
 Picture of LokiSlugBear
 last date seen: blah
 Form with button
 
+DIV for specific element
 picute of Pan
 last date seen: blah
 Form with Button
@@ -24,20 +20,23 @@ So, we're going to make a cat element to show the pic, the last date seen, the f
 Pull from an array of cat names. 
 Picture will be based on the cat name. 
 
-Need to set up state after the array, pull data from DB to fill up state, will create elements from changed state. NO, that will pull data from cat that doesn't need it. Also, forms will reload page, pulling all data again, even if it doesn't need it. Don't do that. 
+Do I need state? 
+No State: page loads, loads JS, pulls data from DB through BE, creates an element for each cat, passing name and date in as props. Button is form, posts and reloads page. Good? No state, straightforward. Bad? Pulls data it doesn't need. 
 
-So use buttons. 
-set up state.
-Create elements from array of cat names. 
-each element will pull from DB
-each element will update state on successful write to DB, which will update THAT element, and not reload the page and cause unneeded DB pulls and element refreshes. 
+rerender and pull: page loads, loads JS, creates an element for each cat, passing in name as prop. On render, pulls date from DB. Button is button, POSTS and rerenders. Good? No state, straightforward. doesn't pull data it doesn't need. Bad? Have to pass cat name to BE, more complex BE to get just one cat's data. 
+
+Big State: page loads, loads JS, pulls data from DB throgh BE, creates state. Creates an element for each cat in state, passing name and date in as props. Button is button, posts to upload DB and changes state upon receipt of acknowledgement from BE. State change updates the element. Good? honestly, fairly straightforward. Doesn't pull data it doesn't need. Bad? Have to pass props down once. 
+
+Small State: page loads, loads JS, Creates an element for each cat in array, passing in cat name. Each element pulls from DB for Date. Button is button, posts to upload DB and changes state upon receipt of acknowledgement from BE. State change updates the element. Good? honestly, fairly straightforward. Doesn't pull data it doesn't need. Bad? have to pass props once. Multiple states? Have to pass cat name to BE so it can pull proper data. Makes BE more complex. 
+
+I don't need state, would only be using it for the practice. that's fine. Use state. Big state has less complex BE, let's do that. 
 
 
 BE
 
 Simple express setup that takes in GET from FE, gets data from redis database, formats, and hands it back to FE. 
 No. Can do in FE. No need to make a whole extra BE for this. 
-Yes. Keep functionality modular. Easier to TS. Let's do Yes. 
+Yes. Keep functionality modular. Easier to troubleshoot. Let's do Yes. 
 
 
 Data
