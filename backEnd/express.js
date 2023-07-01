@@ -32,12 +32,14 @@ write modules/middleware for writing and reading from DB.
 //set up everything
 import express from 'express';
 import holler from '@tonydiethelm/holler';	//console logging during testing.
+import cors from 'cors';
 import {fakeDate} from './fakeDate.mjs';
 import {fakeDateWrite} from './fakeDateWrite.mjs';
 
 const port = process.env.PORT || 3000;
 const app = express();
 app.use(express.json());	//automagically read JSON.
+app.use(cors());  //automagically allow CORS requests
 
 
 //Hello world to start. Comment out later. 

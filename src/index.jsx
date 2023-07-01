@@ -18,19 +18,35 @@ Cat Element:
 */
 
 //imports and setup stuff. 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styling.css';
-import {useState} from "react";
+
 
 
 //main logic flow, as per design doc and notes here. 
-export default function UI() {
-  return(
-    <div>
-      <p>Testing to see if default function is exporting and rendering</p>
-    </div>  
-    )
+export default function App() {
+  console.log('entering main app.')
+  //create state
+  const [cats, setCats] = useState([]);
+
+
+  //get data on load
+  const system = "http://localhost:3000";   //during testing
+  //const system = "http://services:3000";  //during production
+  const getCatData = () => {
+    fetch(system)
+    .then(response => response.json())
+    .then(catData => setCats(catData))      //should be array of objects
+    .catch(error => console.log('We had an error getting data from the BE: ', error))
+  }
+
+  //create elements from state
+  console.log(cats);
+
+
+
+  return(<div><p>Testing to see if default function is exporting and rendering. {cats}</p></div>)
 
 }
 
@@ -48,9 +64,21 @@ function catElement(catName, lastSighting){
   );
 }
 
+async function getCatDataFromDB(){
+  //do a fetch and return the response after deJSONifying. 
+  const response = await fetch('http://localhost:3000', {
+    //method: 'GET', //default
+    //mode: 'no-cors',  //handled in express. 
+    //headers: {'Content-Type': 'application/json'}
+  });
+  const catDataFromDB = await response.json();
+  console.log('cat data from DB is: ', catDataFromDB);
+
+  return catDataFromDB;
+}
 
 
 
 //Render to the dom. 
 const root = createRoot(document.getElementById('root'));
-root.render(<UI />);
+root.render(<App />);

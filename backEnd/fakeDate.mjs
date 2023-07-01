@@ -8,17 +8,13 @@ Insert that into the express response in proper cat format.
 //main code
 
 export function fakeDate (request, response, next) {
-  console.log('Making up a fake date');
-
   const fullDate = new Date();
   const date = fullDate.getDate();
   const month = fullDate.getMonth();
   const year = fullDate.getFullYear();
   const dateString = month + '/' + date + '/' + year;
 
-  console.log('Fake date is...', dateString);
-
-  response.locals = {'FredTheCat': dateString};
+  response.locals = [{'Alfred': dateString}, {'Beanie': dateString}];
 
   return next();
 
