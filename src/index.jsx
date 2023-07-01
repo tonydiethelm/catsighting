@@ -28,31 +28,34 @@ import './styling.css';
 export default function App() {
   console.log('entering main app.')
   //create state
-  const [cats, setCats] = useState([]);
+  const [cats, setCats] = useState([{testcat: 'today'}]);
 
 
   //get data on load
-  const system = "http://localhost:3000";   //during testing
-  //const system = "http://services:3000";  //during production
-  const getCatData = () => {
+  useEffect(function getCatData(){
+    const system = "http://localhost:3000";   //during testing
+    //const system = "http://services:3000";  //during production
     fetch(system)
     .then(response => response.json())
+    .then(response => console.log('we fetched: ', response))
     .then(catData => setCats(catData))      //should be array of objects
-    .catch(error => console.log('We had an error getting data from the BE: ', error))
-  }
+    .catch(error => console.log('We had an error getting data from the BE and updating state: ', error))
+  }, []);
 
   //create elements from state
-  console.log(cats);
 
 
 
-  return(<div><p>Testing to see if default function is exporting and rendering. {cats}</p></div>)
+  return(<div><p>Testing to see if default function is exporting and rendering. {Object.keys(cats[0])} {cats[0].testcat}</p></div>)
 
 }
 
 
 
 //supporting functions
+
+
+
 function catElement(catName, lastSighting){
   const catPicString = catName + ".jpg"
   return(
@@ -64,18 +67,7 @@ function catElement(catName, lastSighting){
   );
 }
 
-async function getCatDataFromDB(){
-  //do a fetch and return the response after deJSONifying. 
-  const response = await fetch('http://localhost:3000', {
-    //method: 'GET', //default
-    //mode: 'no-cors',  //handled in express. 
-    //headers: {'Content-Type': 'application/json'}
-  });
-  const catDataFromDB = await response.json();
-  console.log('cat data from DB is: ', catDataFromDB);
 
-  return catDataFromDB;
-}
 
 
 
