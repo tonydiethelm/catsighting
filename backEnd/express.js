@@ -50,9 +50,9 @@ app.get("/",
 */
 
 app.get("/",
-	holler,
+	//holler,
 	fakeDate,
-	holler,
+	//holler,
 	(request, response) => {response.status(200).send(response.locals)}
 );
 

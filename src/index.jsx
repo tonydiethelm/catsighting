@@ -28,8 +28,8 @@ import './styling.css';
 export default function App() {
   console.log('entering main app.')
   //create state
-  const [cats, setCats] = useState([{testcat: 'today'}]);
-
+  const [cats, setCats] = useState([{name: "Test Cat", lastSighting: "today"}]);
+  console.log('on initial load, cats is: ', cats)
 
   //get data on load
   useEffect(function getCatData(){
@@ -37,10 +37,13 @@ export default function App() {
     //const system = "http://services:3000";  //during production
     fetch(system)
     .then(response => response.json())
-    .then(response => console.log('we fetched: ', response))
+    //.then(response => console.log('we fetched: ', response))
     .then(catData => setCats(catData))      //should be array of objects
     .catch(error => console.log('We had an error getting data from the BE and updating state: ', error))
   }, []);
+
+  console.log('after fetch, cats is: ', cats)
+
 
   //create elements from state
   return(<div><p>Testing to see if default function is exporting and rendering.</p>
@@ -49,6 +52,7 @@ export default function App() {
       lastSighting = {specificCat.lastSighting} />}
 
     )}
+    {cats.map(specificCat => {<testingCat />})}
   
   
   
@@ -73,7 +77,9 @@ function catElement(catName, lastSighting){
   );
 }
 
-
+function testingCat(){
+  return(<p>I'm a cat, meow, check meowt.</p>)
+}
 
 
 
