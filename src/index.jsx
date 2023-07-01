@@ -43,10 +43,16 @@ export default function App() {
   }, []);
 
   //create elements from state
+  return(<div><p>Testing to see if default function is exporting and rendering.</p>
+    {cats.map(specificCat => {<catElement 
+      catName = {specificCat.name}
+      lastSighting = {specificCat.lastSighting} />}
 
-
-
-  return(<div><p>Testing to see if default function is exporting and rendering. {Object.keys(cats[0])} {cats[0].testcat}</p></div>)
+    )}
+  
+  
+  
+  </div>)
 
 }
 

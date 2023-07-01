@@ -41,8 +41,6 @@ Yes. Keep functionality modular. Easier to troubleshoot. Let's do Yes.
 
 Data
 
-{LokiSlugBear: date and time}
-{Pan: date and time}
+{name: SlugBear, lastighting: date and time}
 
-Will be given by BE as array of objects. [{LokiSlugBear: date and time}, {Pan: date and time}]
-
+Will be given by BE as array of objects.
