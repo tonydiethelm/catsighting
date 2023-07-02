@@ -51,10 +51,11 @@ export default function App() {
     <p>Testing to see if default function is exporting and rendering.</p>
     <p>{hello} is working.</p>
     <p><TestingCat1 /> is working. </p>
-    {cats.map(() => <p>One per cat in state.</p>)}
-    {cats.map((specificCat) => <p>{specificCat.name} {specificCat.lastSighting}</p>)}
+    {cats.map((specificCat) => <p key={specificCat.name}>One per cat in state. is working</p>)}
+    {cats.map((specificCat) => <p key={specificCat.name}>{specificCat.name} {specificCat.lastSighting} is working</p>)}
 
-    {cats.map((specificCat) => <CatElement />)}
+
+    <CatElement specificCat={cats[0]}/>    
 
 
 
@@ -67,7 +68,10 @@ export default function App() {
 
 //supporting functions
 
-
+function updateSighting(){
+  console.log('ping the DB to update. When we get the OK...')
+  console.log('update state')
+}
 
 function CatElement({specificCat}){
   const catPicString = specificCat.name + ".jpg"
