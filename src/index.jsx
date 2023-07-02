@@ -2,8 +2,9 @@
 console.log('test to make sure the JSX is loaded');
 
 /* Utilizing "Big State" design, see design doc.
-1. pull data from DB.
-2. create state 
+1. create state 
+2. pull data from DB.
+3. update state. 
 4. Create cat element for each cat in state, passing in name and date via props. 
 
 Cat Element:
@@ -14,6 +15,21 @@ Cat Element:
   pic (name.jpg, and set a classname of catPic for sizing via CSS.)
   last seen: date (passed in via props)
   button (calls BE to update DB and then updates state. State change should cause rerender.)
+
+Done:
+Set up boilerplate code, imports, etc.
+render statement
+set up basic app
+  State
+  fetch + update state
+write cat element
+
+
+ToDo:
+CSS to prettify
+
+
+
 
 */
 
@@ -54,8 +70,8 @@ export default function App() {
     {cats.map((specificCat) => <p key={specificCat.name}>One per cat in state. is working</p>)}
     {cats.map((specificCat) => <p key={specificCat.name}>{specificCat.name} {specificCat.lastSighting} is working</p>)}
 
-
-    <CatElement specificCat={cats[0]}/>    
+    <p>Now for the real deal attempt...</p>
+    {cats.map((oneCat) => <CatElement specificCat={oneCat}/>)}   
 
 
 
