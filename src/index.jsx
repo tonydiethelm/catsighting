@@ -59,18 +59,9 @@ export default function App() {
   console.log('after fetch, cats is: ', cats)
 
 
-  //testing element creation
-  const hello = 'hello world';
-
   return(
-  <div className='testing'>
-    <p>Testing to see if default function is exporting and rendering.</p>
-    <p>{hello} is working.</p>
-    <p><TestingCat1 /> is working. </p>
-    {cats.map((specificCat) => <p key={specificCat.name}>One per cat in state. is working</p>)}
-    {cats.map((specificCat) => <p key={specificCat.name}>{specificCat.name} {specificCat.lastSighting} is working</p>)}
+  <div className='allCats'>
 
-    <p>Now for the real deal attempt...</p>
     {cats.map((oneCat) => <CatElement specificCat={oneCat}/>)}   
 
 
@@ -100,13 +91,7 @@ function CatElement({specificCat}){
   );
 }
 
-function TestingCat1(){
-  return("I'm a cat, meow.");
-}
 
-function TestingCat2({specificCat}){
-  return(<p>"I'm a cat, meow." {specificCat.name} {specificCat.lastSighting} </p>);
-}
 
 //Render to the dom. 
 const root = createRoot(document.getElementById('root'));
