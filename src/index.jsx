@@ -26,10 +26,8 @@ import './styling.css';
 
 //main logic flow, as per design doc and notes here. 
 export default function App() {
-  console.log('entering main app.')
   //create state
   const [cats, setCats] = useState([{name: "Test Cat", lastSighting: "today"}]);
-  console.log('on initial load, cats is: ', cats)
 
   //get data on load
   useEffect(function getCatData(){
@@ -45,17 +43,22 @@ export default function App() {
   console.log('after fetch, cats is: ', cats)
 
 
-  //create elements from state
-  return(<div><p>Testing to see if default function is exporting and rendering.</p>
-    {cats.map(specificCat => {<catElement 
-      catName = {specificCat.name}
-      lastSighting = {specificCat.lastSighting} />}
+  //testing element creation
+  const hello = 'hello world';
 
-    )}
-    {cats.map(specificCat => {<testingCat />})}
-  
-  
-  
+  return(
+  <div className='testing'>
+    <p>Testing to see if default function is exporting and rendering.</p>
+    <p>{hello} is working.</p>
+    <p><TestingCat1 /> is working. </p>
+    {cats.map(() => <p>One per cat in state.</p>)}
+    {cats.map((specificCat) => <p>{specificCat.name} {specificCat.lastSighting}</p>)}
+
+    {cats.map((specificCat) => <CatElement />)}
+
+
+
+
   </div>)
 
 }
@@ -66,22 +69,24 @@ export default function App() {
 
 
 
-function catElement(catName, lastSighting){
-  const catPicString = catName + ".jpg"
+function CatElement({specificCat}){
+  const catPicString = specificCat.name + ".jpg"
   return(
-    <div className="catElement">
+    <div className="catElement" key={specificCat.name}>
       <img src={catPicString} alt="Picture of a cat" className="catPic"></img>
-      <p>{catName} was last seen: {lastSighting}</p>
-      <button type="button" className="catButton" onClick={updateSighting}>I saw {catName} today.</button>
+      <p>{specificCat.name} was last seen: {specificCat.lastSighting}</p>
+      <button type="button" className="catButton" onClick={updateSighting}>I saw {specificCat.name} today.</button>
     </div>
   );
 }
 
-function testingCat(){
-  return(<p>I'm a cat, meow, check meowt.</p>)
+function TestingCat1(){
+  return("I'm a cat, meow.");
 }
 
-
+function TestingCat2({specificCat}){
+  return(<p>"I'm a cat, meow." {specificCat.name} {specificCat.lastSighting} </p>);
+}
 
 //Render to the dom. 
 const root = createRoot(document.getElementById('root'));
