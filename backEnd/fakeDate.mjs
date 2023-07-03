@@ -12,9 +12,10 @@ export function fakeDate (request, response, next) {
   const date = fullDate.getDate();
   const month = fullDate.getMonth();
   const year = fullDate.getFullYear();
-  const dateString = month + '/' + date + '/' + year;
+  //const dateString = month + '/' + date + '/' + year;
+  const dateString = "1/1/23";
 
-  response.locals = [{name: 'Alfred', lastSighting: dateString}, {name: 'Beanie', lastSighting: dateString}, {name: 'Charlie', lastSighting: dateString}];
+  response.locals = [{name: 'Alfred', lastSighting: dateString}, {name: 'Beanie', lastSighting: dateString}];
 
   return next();
 

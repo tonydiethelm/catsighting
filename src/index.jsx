@@ -58,14 +58,17 @@ export default function App() {
 
   console.log('after fetch, cats is: ', cats)
 
+  //set date on specific cat to today. 
+  //needs index to change correct cat in cats/state.
+  function updateSighting(index){
+    setCats(cats[index].lastSighting = makeADate());
+  }
+
 
   return(
   <div className='allCats'>
 
-    {cats.map((oneCat) => <CatElement specificCat={oneCat}/>)}   
-
-
-
+    {cats.map((oneCat, index) => <CatElement specificCat={oneCat} index={index}/>)}   
 
   </div>)
 
@@ -75,25 +78,25 @@ export default function App() {
 
 //supporting functions
 
-function updateSighting(){
-  console.log('ping the DB to update. When we get the OK...')
-  console.log('update state')
-}
-
-function CatElement({specificCat}){
+function CatElement({specificCat}, index, updateSighting){
   const catPicString = "Public/" + specificCat.name + ".jpg"
   return(
-    <div className="catElement" key={specificCat.name}>
+    <div className="catElement" key={index}>
       <img src={catPicString} alt={`Picture of ${specificCat.name}`} className="catPic"></img>
       <p>{specificCat.name} was last seen: {specificCat.lastSighting}</p>
-      <button type="button" className="catButton" onClick={updateSighting}>I saw {specificCat.name} today.</button>
-    <br />
-    <br />
-    <br />
+      <button type="button" className="catButton" onClick={() => updateSighting(index)}>I saw {specificCat.name} today.</button>
     </div>
   );
 }
 
+function makeADate(){
+  const fullDate = new Date();
+  const date = fullDate.getDate();
+  const month = fullDate.getMonth();
+  const year = fullDate.getFullYear();
+
+  return (month + '/' + date + '/' + year);
+}
 
 
 //Render to the dom. 
