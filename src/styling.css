@@ -1,6 +1,58 @@
-/* This is just so I can see my divs properly in the beginning */
+/* This is just so I can see my divs properly in the beginning 
 div {
   border-style: dotted;
   border-width: 2px;
   border-color: red
+}
+*/
+
+
+/*
+Done:
+size images sanely
+center images
+
+ToDo:
+set up for small screen sizes vs. large screen size
+large screen size needs to be flex row, centered horizontally. 
+small screen sizes need to be flex column, centered horizontally. 
+
+
+*/
+
+img {
+  border-radius: 50%;
+  height: auto;
+  width: 300px;
+}
+
+* {
+  font-size: large;
+}
+
+.catElement {
+  max-height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.allCats {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* phones */
+@media screen and (max-width: 480px){
+  
+  .allCats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }

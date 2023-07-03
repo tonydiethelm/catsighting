@@ -14,7 +14,7 @@ export function fakeDate (request, response, next) {
   const year = fullDate.getFullYear();
   const dateString = month + '/' + date + '/' + year;
 
-  response.locals = [{name: 'Alfred', lastSighting: dateString}, {name: 'Beanie', lastSighting: dateString}];
+  response.locals = [{name: 'Alfred', lastSighting: dateString}, {name: 'Beanie', lastSighting: dateString}, {name: 'Charlie', lastSighting: dateString}];
 
   return next();
 

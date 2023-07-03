@@ -81,12 +81,15 @@ function updateSighting(){
 }
 
 function CatElement({specificCat}){
-  const catPicString = specificCat.name + ".jpg"
+  const catPicString = "Public/" + specificCat.name + ".jpg"
   return(
     <div className="catElement" key={specificCat.name}>
-      <img src={catPicString} alt="Picture of a cat" className="catPic"></img>
+      <img src={catPicString} alt={`Picture of ${specificCat.name}`} className="catPic"></img>
       <p>{specificCat.name} was last seen: {specificCat.lastSighting}</p>
       <button type="button" className="catButton" onClick={updateSighting}>I saw {specificCat.name} today.</button>
+    <br />
+    <br />
+    <br />
     </div>
   );
 }
