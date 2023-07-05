@@ -56,18 +56,29 @@ export default function App() {
     .catch(error => console.log('We had an error getting data from the BE and updating state: ', error))
   }, []);
 
-  console.log('after fetch, cats is: ', cats)
 
   //set date on specific cat to today. 
   //needs index to change correct cat in cats/state.
   function updateSighting(index){
-    setCats(cats[index].lastSighting = makeADate());
+
+    setCats([...cats], cats[index].lastSighting = makeADate());
   }
 
+  //CatElement
+  function CatElement({specificCat, index}){
+    const catPicString = "Public/" + specificCat.name + ".jpg"
+    return(
+      <div className="catElement" key={index}>
+        <img src={catPicString} alt={`Picture of ${specificCat.name}`} className="catPic"></img>
+        <p>{specificCat.name} was last seen: {specificCat.lastSighting}</p>
+        <button type="button" className="catButton" onClick={() => updateSighting(index)}>I saw {specificCat.name} today.</button>
+      </div>
+    );
+  }
 
   return(
   <div className='allCats'>
-
+    {console.log('Cats is... ', cats)}
     {cats.map((oneCat, index) => <CatElement specificCat={oneCat} index={index}/>)}   
 
   </div>)
@@ -78,16 +89,7 @@ export default function App() {
 
 //supporting functions
 
-function CatElement({specificCat}, index, updateSighting){
-  const catPicString = "Public/" + specificCat.name + ".jpg"
-  return(
-    <div className="catElement" key={index}>
-      <img src={catPicString} alt={`Picture of ${specificCat.name}`} className="catPic"></img>
-      <p>{specificCat.name} was last seen: {specificCat.lastSighting}</p>
-      <button type="button" className="catButton" onClick={() => updateSighting(index)}>I saw {specificCat.name} today.</button>
-    </div>
-  );
-}
+
 
 function makeADate(){
   const fullDate = new Date();
