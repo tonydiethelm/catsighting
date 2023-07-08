@@ -4,16 +4,14 @@ Insert that into the express response in proper cat format.
 [{cat name: date}, {other cat name: date}]
 
 */
+//setup
+import {todaysDate} from './todaysDate.mjs'; 
 
 //main code
 
 export function fakeDate (request, response, next) {
-  const fullDate = new Date();
-  const date = fullDate.getDate();
-  const month = fullDate.getMonth();
-  const year = fullDate.getFullYear();
-  //const dateString = month + '/' + date + '/' + year;
-  const dateString = "1/1/23";
+  //const dateString = todaysDate();
+  const dateString = "today";
 
   response.locals = [{name: 'Alfred', lastSighting: dateString}, {name: 'Beanie', lastSighting: dateString}];
 
