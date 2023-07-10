@@ -35,6 +35,7 @@ import holler from '@tonydiethelm/holler';	//console logging during testing.
 import cors from 'cors';
 import {fakeDate} from './fakeDate.mjs';
 import {fakeDateWrite} from './fakeDateWrite.mjs';
+import {getCatDataFromRedis} from './getCatDataFromRedis.mjs';
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -51,8 +52,9 @@ app.get("/",
 
 app.get("/",
 	//holler,
-	fakeDate,
-	//holler,
+	//fakeDate,
+  getCatDataFromRedis,
+	holler,
 	(request, response) => {response.status(200).send(response.locals)}
 );
 

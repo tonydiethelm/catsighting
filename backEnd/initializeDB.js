@@ -15,7 +15,7 @@ import {todaysDate} from './todaysDate.mjs';
 import redis from 'redis';
 const port = 6379;
 const server = "192.168.0.3";
-const connectionString = 'redis://services.shc:6380'
+const connectionString = 'redis://services.shc:6379';
 
 //main
 //connect to DB
@@ -32,8 +32,4 @@ console.log('I am going to send...', JSONcats, typeof(JSONcats));
 //write to DB
 
 
-
-
-
-
-//console.log(await client.set('cats', 'test')); // 'OK'
+console.log(await client.set('cats', JSONcats)); // 'OK'
