@@ -26,6 +26,7 @@ write cat element
 
 
 ToDo:
+updateSighting needs to POST to BE, with cat's name so it can update the right data.
 CSS to prettify
 
 
@@ -37,6 +38,8 @@ CSS to prettify
 import React, {useState, useEffect} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styling.css';
+const system = "http://localhost:3000";   //during testing
+//const system = "http://services:3000";  //during production
 
 
 
@@ -47,8 +50,6 @@ export default function App() {
 
   //get data on load
   useEffect(function getCatData(){
-    const system = "http://localhost:3000";   //during testing
-    //const system = "http://services:3000";  //during production
     fetch(system)
     .then(response => response.json())
     //.then(response => console.log('we fetched: ', response))
@@ -59,9 +60,19 @@ export default function App() {
 
   //set date on specific cat to today. 
   //needs index to change correct cat in cats/state.
-  function updateSighting(index){
-
+  //also do post to BE so database gets updated
+  async function updateSighting(index){
+    //update state with today's date for the appropriate cat
     setCats([...cats], cats[index].lastSighting = makeADate());
+    //send a post with updated state
+    await fetch(system, {
+      method: 'POST',
+      body: JSON.stringify(cats),
+      headers: {'Content-Type': 'application/json' }
+    })
+    .then(response => console.log('Got response from BE: ', response))
+    .catch(error => console.log('Got error from BE: ', error));
+
   }
 
   //CatElement

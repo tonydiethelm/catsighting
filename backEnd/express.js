@@ -36,6 +36,7 @@ import cors from 'cors';
 import {fakeDate} from './fakeDate.mjs';
 import {fakeDateWrite} from './fakeDateWrite.mjs';
 import {getCatDataFromRedis} from './getCatDataFromRedis.mjs';
+import { updateCatDataToRedis } from './updateCatDataToRedis.mjs';
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -60,7 +61,7 @@ app.get("/",
 
 app.post("/",
   holler,
-  fakeDateWrite,
+  updateCatDataToRedis,
   holler,
   (request, response) => {response.status(200).send("Written to DB")}
 );
