@@ -38,8 +38,8 @@ CSS to prettify
 import React, {useState, useEffect} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styling.css';
-const system = "http://localhost:3000";   //during testing
-//const system = "http://services:3000";  //during production
+//const system = "http://localhost:3000";   //during testing
+const system = "http://services:3000";  //during production
 
 
 
@@ -77,7 +77,7 @@ export default function App() {
 
   //CatElement
   function CatElement({specificCat, index}){
-    const catPicString = "Public/" + specificCat.name + ".jpg"
+    const catPicString = "./" + specificCat.name + ".jpg"
     return(
       <div className="catElement" key={index}>
         <img src={catPicString} alt={`Picture of ${specificCat.name}`} className="catPic"></img>
@@ -85,7 +85,7 @@ export default function App() {
         <button type="button" className="catButton" onClick={() => updateSighting(index)}>I saw {specificCat.name} today.</button>
       </div>
     );
-  }
+  };
 
   return(
   <div className='allCats'>
