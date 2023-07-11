@@ -33,8 +33,6 @@ write modules/middleware for writing and reading from DB.
 import express from 'express';
 import holler from '@tonydiethelm/holler';	//console logging during testing.
 import cors from 'cors';
-import {fakeDate} from './fakeDate.mjs';
-import {fakeDateWrite} from './fakeDateWrite.mjs';
 import {getCatDataFromRedis} from './getCatDataFromRedis.mjs';
 import { updateCatDataToRedis } from './updateCatDataToRedis.mjs';
 
