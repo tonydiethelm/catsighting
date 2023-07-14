@@ -105,7 +105,7 @@ export default function App() {
 function makeADate(){
   const fullDate = new Date();
   const date = fullDate.getDate();
-  const month = fullDate.getMonth();
+  const month = fullDate.getMonth() + 1;
   const year = fullDate.getFullYear();
 
   return (month + '/' + date + '/' + year);
